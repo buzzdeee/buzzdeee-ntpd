@@ -9,7 +9,6 @@
 <% if @server and @server.is_a? Array -%>
 <% @server.each do |srv| -%><%= "server #{srv}\n" %><% end -%>
 <% elsif @server -%><%=   "server #{@server}\n" %><% end -%>
->>>>>>> Add a params.pp, to define default values, and add servers entry
 # use a random selection of NTP Pool Time Servers
 # see http://support.ntp.org/bin/view/Servers/NTPPoolServers
 <% if @servers and @servers.is_a? Array -%>
