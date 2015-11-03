@@ -1,6 +1,6 @@
 # The default values for the module
 class ntpd::params {
-  $server = "ntp.${::domain}"
+  $server = undef
   $servers = undef
   $listenon = '# listen on *'
 }

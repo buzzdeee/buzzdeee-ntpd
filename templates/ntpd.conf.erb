@@ -6,15 +6,15 @@
 
 # sync to a single server
 #server ntp.example.org
-<% if @server.is_a? Array -%>
+<% if @server and @server.is_a? Array -%>
 <% @server.each do |srv| -%><%= "server #{srv}\n" %><% end -%>
-<% elsif @server != '' -%><%=   "server #{@server}\n" %><% end -%>
+<% elsif @server -%><%=   "server #{@server}\n" %><% end -%>
 >>>>>>> Add a params.pp, to define default values, and add servers entry
 # use a random selection of NTP Pool Time Servers
 # see http://support.ntp.org/bin/view/Servers/NTPPoolServers
-<% if @servers.is_a? Array -%>
+<% if @servers and @servers.is_a? Array -%>
 <% @servers.each do |srv| -%><%= "servers #{srv}\n" %><% end -%>
-<% elsif @servers != '' -%><%=   "servers #{@servers}\n" %><% end -%>
+<% elsif @servers -%><%=   "servers #{@servers}\n" %><% end -%>
 
 # use a specific local timedelta sensor (radio clock, etc)
 #sensor nmea0
