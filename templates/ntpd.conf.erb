@@ -2,15 +2,19 @@
 # sample ntpd configuration file, see ntpd.conf(5)
 
 # Addresses to listen on (ntpd does not listen by default)
-<%= @_listenon %>
+<%= @listenon %>
 
 # sync to a single server
 #server ntp.example.org
-<% if @_server.is_a? Array -%>
-<% @_server.each do |srv| -%><%= "server #{srv}\n" %><% end -%>
-<% elsif @_server != '' -%><%=   "server #{@_server}\n" %><% end -%>
+<% if @server.is_a? Array -%>
+<% @server.each do |srv| -%><%= "server #{srv}\n" %><% end -%>
+<% elsif @server != '' -%><%=   "server #{@server}\n" %><% end -%>
+>>>>>>> Add a params.pp, to define default values, and add servers entry
 # use a random selection of NTP Pool Time Servers
 # see http://support.ntp.org/bin/view/Servers/NTPPoolServers
+<% if @servers.is_a? Array -%>
+<% @servers.each do |srv| -%><%= "servers #{srv}\n" %><% end -%>
+<% elsif @servers != '' -%><%=   "servers #{@server}\n" %><% end -%>
 
 # use a specific local timedelta sensor (radio clock, etc)
 #sensor nmea0
