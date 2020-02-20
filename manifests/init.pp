@@ -12,8 +12,7 @@ class ntpd (
   }
   service { 'ntpd':
     ensure => 'running',
-    enable => true,
-    flags  => '-s',
+    enable => true
   }
 
   File['/etc/ntpd.conf'] ~>

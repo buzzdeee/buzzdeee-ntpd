@@ -7,16 +7,31 @@
 # sync to a single server
 #server ntp.example.org
 <% if @server and @server.is_a? Array -%>
-<% @server.each do |srv| -%><%= "server #{srv}\n" %><% end -%>
-<% elsif @server -%><%=   "server #{@server}\n" %><% end -%>
+<% @server.each do |srv| -%>
+<% srv.each do |key,value| -%>
+<%= "server #{key}" %><% if scope.call_function('versioncmp', [@kernelversion, "6.5"]) > 0 -%><% if value %> trusted<% end %><% end %>
+<% end -%>
+<% end -%>
+<% end -%>
 # use a random selection of NTP Pool Time Servers
 # see http://support.ntp.org/bin/view/Servers/NTPPoolServers
 <% if @servers and @servers.is_a? Array -%>
-<% @servers.each do |srv| -%><%= "servers #{srv}\n" %><% end -%>
-<% elsif @servers -%><%=   "servers #{@servers}\n" %><% end -%>
+<% @servers.each do |srv| -%>
+<% srv.each do |key,value| -%>
+<%= "servers #{key}" %><% if scope.call_function('versioncmp', [@kernelversion, "6.5"]) > 0 -%><% if value %> trusted<% end %><% end %>
+<% end -%>
+<% end -%>
+<% end -%>
 
 # use a specific local timedelta sensor (radio clock, etc)
 #sensor nmea0
 
 # use all detected timedelta sensors
 #sensor *
+
+<% if scope.call_function('versioncmp', [@kernelversion, "6.5"]) > 0 -%>
+# get the time constraint from a well-known HTTPS site
+constraint from "9.9.9.9"               # quad9 v4 without DNS
+constraint from "2620:fe::fe"           # quad9 v6 without DNS
+constraints from "www.google.com"       # intentionally not 8.8.8.8
+<% end -%>
