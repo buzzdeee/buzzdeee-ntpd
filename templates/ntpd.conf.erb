@@ -24,10 +24,11 @@
 <% end -%>
 
 # use a specific local timedelta sensor (radio clock, etc)
-#sensor nmea0
-
-# use all detected timedelta sensors
+<% if @sensor -%>
+sensor <% @sensor %>
+<% else -%>
 #sensor *
+<% end -%>
 
 <% if scope.call_function('versioncmp', [@kernelversion, "6.5"]) > 0 -%>
 # get the time constraint from a well-known HTTPS site

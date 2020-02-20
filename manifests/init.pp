@@ -3,6 +3,7 @@
 class ntpd (
   $server = $::ntpd::params::server,
   $servers = $::ntpd::params::servers,
+  $sensor = $::ntpd::params::sensor,
   $listenon = $::ntpd::params::listenon,
 ) inherits ntpd::params {
 
